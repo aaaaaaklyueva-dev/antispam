@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/sifox-design-system-82f93a75-f22d-4fa6-8b94-2a56e55bb27b/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/sifox-design-system-82f93a75-f22d-4fa6-8b94-2a56e55bb27b/tokens/colors.css">
+<link rel="stylesheet" href="_ds/sifox-design-system-82f93a75-f22d-4fa6-8b94-2a56e55bb27b/tokens/typography.css">
+<link rel="stylesheet" href="_ds/sifox-design-system-82f93a75-f22d-4fa6-8b94-2a56e55bb27b/tokens/effects.css">
+<link rel="stylesheet" href="_ds/sifox-design-system-82f93a75-f22d-4fa6-8b94-2a56e55bb27b/tokens/base.css">
+<script src="_ds/sifox-design-system-82f93a75-f22d-4fa6-8b94-2a56e55bb27b/_ds_bundle.js"></script>
+<link rel="stylesheet" href="figma-antispam/fig-tokens.css">
+<link rel="stylesheet" href="figma-antispam/fig-typography.css">
+<link rel="stylesheet" href="figma-antispam/fig-assets.css">
+<style>
+@font-face {
+  font-family: "Druk Wide Cyr";
+  src: url("_ds/sifox-design-system-82f93a75-f22d-4fa6-8b94-2a56e55bb27b/assets/fonts/DrukWideCyr.woff") format("woff"),
+       url("_ds/sifox-design-system-82f93a75-f22d-4fa6-8b94-2a56e55bb27b/assets/fonts/DrukWideCyr.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+html, body { margin: 0; padding: 0; background: var(--main, #ffffff); }
+
+
+
+/* 3D-объект слегка покачивается */
+starburst-3d { display: block; }
+@keyframes rock-3d {
+  0%, 100% { transform: rotate(-3.2deg) translateY(0); }
+  50%      { transform: rotate(3.2deg) translateY(-3px); }
+}
+.starburst-3d {
+  animation: rock-3d 4.2s ease-in-out infinite;
+  transform-origin: 50% 65%;
+  will-change: transform;
+}
+video.why-video { pointer-events: none; filter: grayscale(1); }
+video.why-video-2 { filter: none; }
+
+/* Телефон вибрирует на столе (беззвучный режим) */
+@keyframes phone-buzz {
+  0%, 22%, 44%, 100% { transform: matrix(0.999,-0.042,0.042,0.999,0,20.295) translate(240px,229px) rotate(0deg) translate(-240px,-229px); }
+  2%  { transform: matrix(0.999,-0.042,0.042,0.999,0,20.295) translate(240px,229px) rotate(-0.75deg) translate(-2px,1.5px) translate(-240px,-229px); }
+  5%  { transform: matrix(0.999,-0.042,0.042,0.999,0,20.295) translate(240px,229px) rotate(0.65deg) translate(2.5px,-1px) translate(-240px,-229px); }
+  8%  { transform: matrix(0.999,-0.042,0.042,0.999,0,20.295) translate(240px,229px) rotate(-0.55deg) translate(-2px,1px) translate(-240px,-229px); }
+  11% { transform: matrix(0.999,-0.042,0.042,0.999,0,20.295) translate(240px,229px) rotate(0.45deg) translate(1.5px,-0.5px) translate(-240px,-229px); }
+  14% { transform: matrix(0.999,-0.042,0.042,0.999,0,20.295) translate(240px,229px) rotate(-0.3deg) translate(-1px,0.5px) translate(-240px,-229px); }
+  17% { transform: matrix(0.999,-0.042,0.042,0.999,0,20.295) translate(240px,229px) rotate(0.18deg) translate(0.5px,0px) translate(-240px,-229px); }
+  30% { transform: matrix(0.999,-0.042,0.042,0.999,0,20.295) translate(240px,229px) rotate(-0.6deg) translate(-2px,1px) translate(-240px,-229px); }
+  33% { transform: matrix(0.999,-0.042,0.042,0.999,0,20.295) translate(240px,229px) rotate(0.5deg) translate(2px,-1px) translate(-240px,-229px); }
+  36% { transform: matrix(0.999,-0.042,0.042,0.999,0,20.295) translate(240px,229px) rotate(-0.35deg) translate(-1px,0.5px) translate(-240px,-229px); }
+  39% { transform: matrix(0.999,-0.042,0.042,0.999,0,20.295) translate(240px,229px) rotate(0.2deg) translate(0.5px,0px) translate(-240px,-229px); }
+}
+@keyframes dots-buzz {
+  0%, 22%, 44%, 100% { transform: rotate(0deg) translate(0,0); }
+  2%  { transform: rotate(-1deg) translate(-3px,2px); }
+  5%  { transform: rotate(0.85deg) translate(3.5px,-1.5px); }
+  8%  { transform: rotate(-0.7deg) translate(-3px,1.5px); }
+  11% { transform: rotate(0.6deg) translate(2px,-1px); }
+  14% { transform: rotate(-0.4deg) translate(-1.5px,1px); }
+  17% { transform: rotate(0.24deg) translate(1px,0); }
+  30% { transform: rotate(-0.8deg) translate(-3px,1.5px); }
+  33% { transform: rotate(0.65deg) translate(2.5px,-1.5px); }
+  36% { transform: rotate(-0.45deg) translate(-1.5px,1px); }
+  39% { transform: rotate(0.26deg) translate(1px,0); }
+}
+.fig-asset-6b7bf4522fae97b2-d30f6d3c {
+  background: url("figma-antispam/assets/phone-bw.png") center / contain no-repeat !important;
+  filter: grayscale(1);
+  animation: phone-buzz 2.8s cubic-bezier(.36,.07,.19,.97) infinite;
+  will-change: transform;
+}
+div:has(> .fig-asset-6b7bf4522fae97b2-d30f6d3c) > div:first-child {
+  background: url("figma-antispam/assets/dots.png") center / contain no-repeat;
+  left: 0 !important; top: 20px !important;
+  width: 480px !important; height: 457px !important;
+  animation: dots-buzz 2.8s cubic-bezier(.36,.07,.19,.97) infinite;
+  animation-delay: 0.06s;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+div:has(> .fig-asset-6b7bf4522fae97b2-d30f6d3c) > div:first-child > * { visibility: hidden; }
+/* Блок «Новые номера / Спам-база»: без обводки */
+.sc-host-x > div > div:nth-child(4) > div > div:nth-child(1),
+.sc-host-x > div > div:nth-child(3) > div > div:nth-child(1) {
+  border: none !important;
+}
+/* Карточки 600 / 5-10 / 1-2: серый фон, линии только между карточками */
+.sc-host-x > div > div:nth-child(4) > div > div:nth-child(2) {
+  background: #F2F2F2 !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+.sc-host-x > div > div:nth-child(4) > div > div:nth-child(2) > div {
+  border: none !important;
+}
+.sc-host-x > div > div:nth-child(4) > div > div:nth-child(2) > div + div {
+  border-left: 1.02529px solid #000 !important;
+}
+/* Секция «2 вида защиты» */
+.sc-host-x > div > div:nth-child(4) {
+  background-color: #F2F2F2 !important;
+  height: var(--mode-vh, 70vh) !important;
+}
+.sc-host-x > div > div:nth-child(4) > div:first-child {
+  height: 100% !important;
+}
+#fig-root .mode-cards {
+  gap: 44px !important;
+  left: 1004px !important;
+  top: 200px !important;
+  width: 855px !important;
+}
+#fig-root .mode-title {
+  font-size: 44px !important;
+  left: 1004px !important;
+  top: 140px !important;
+  width: 855px !important;
+  height: auto !important;
+}
+#fig-root .mode-cards > div {
+  padding-top: 12px !important;
+  padding-bottom: 12px !important;
+  padding-left: 0 !important;
+  border: none !important;
+}
+#fig-root .mode-cards > div {
+  border-bottom: 1px solid #000 !important;
+}
+/* «Почему мы»: отступ между карточками и цифрами */
+.sc-host-x > div > div:nth-child(3) > div:nth-child(2) {
+  gap: 64px !important;
+}
+/* Цифры 600 / 5-10 / 1-2: одинаковый верх, линии сверху, снизу и между */
+.sc-host-x > div > div:nth-child(3) > div:nth-child(2) > div:nth-child(2) {
+  border-top: 1px solid #000 !important;
+  border-bottom: 1px solid #000 !important;
+  border-left: none !important;
+  border-right: none !important;
+  align-items: stretch !important;
+}
+.sc-host-x > div > div:nth-child(3) > div:nth-child(2) > div:nth-child(2) > div {
+  border: none !important;
+  justify-content: flex-start !important;
+}
+.sc-host-x > div > div:nth-child(3) > div:nth-child(2) > div:nth-child(2) > div + div {
+  border-left: 1px solid #000 !important;
+}
+/* Верхняя карточка: без внутренних отступов */
+.sc-host-x > div > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) {
+  padding: 0 !important;
+}
+/* Единые вертикальные отступы секций */
+.sc-host-x > div > div:nth-child(2),
+.sc-host-x > div > div:nth-child(3) {
+  padding: 200px 62px !important;
+}
+/* Межстрочное 1.35 в текстовых карточках «Почему мы» */
+.sc-host-x > div > div:nth-child(2) span[style*="Nunito"],
+.sc-host-x > div > div:nth-child(3) span[style*="Nunito"],
+.sc-host-x > div > div:nth-child(4) span[style*="Nunito"] {
+  line-height: 1.35 !important;
+}
+/* Секция «Почему мы» */
+.sc-host-x > div > div:nth-child(3) {
+  position: relative !important;
+  z-index: 2 !important;
+}
+.why-video-2 { width: 100% !important; margin-left: 0 !important; transition: opacity .12s linear; }
+div:has(> .mode-media) { background: #141669 !important; width: 100% !important; height: 100% !important; }
+#fig-root div:has(> div > .mode-media) { width: 960px !important; background: #141669 !important; }
+.mode-media { position: absolute; left: 0; right: 0; top: 0; bottom: 0; height: auto; opacity: 0; background: #141669; }
+.mode-media.mode-media-on { opacity: 1; }
+.mode-text { transition: none; }
+/* Появление справа налево */
+.curve-draw { clip-path: inset(0 100% 0 0); }
+.curve-draw.curve-on { clip-path: inset(0 0 0 0); transition: clip-path 1.1s cubic-bezier(.33,.9,.35,1); }
+.curve-top { clip-path: inset(0 100% 55% 0) !important; }
+.curve-top.curve-on { clip-path: inset(0 0 55% 0) !important; transition: clip-path 1.1s cubic-bezier(.33,.9,.35,1); }
+.curve-bot { clip-path: inset(45% 100% 0 0) !important; }
+.curve-bot.curve-on { clip-path: inset(45% 0 0 0) !important; transition: clip-path 1.1s cubic-bezier(.33,.9,.35,1); }
+.rl { opacity: 0; transform: translateX(90px); transition: opacity .75s ease, transform .75s cubic-bezier(.22,.61,.36,1); will-change: transform, opacity; }
+.rl.rl-on { opacity: 1; transform: translateX(0); }
+@media (prefers-reduced-motion: reduce) {
+  .rl { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .starburst-3d { animation: none; }
+}
+video.hero-video { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; pointer-events: none; z-index: 0; }
+#fig-root .hero-art { display: none !important; }
+#fig-root div:has(> .hero-art) { height: var(--hero-h, 100vh) !important; background-color: #B9D1FF !important; }
+@keyframes star-rock { 0%, 100% { transform: rotate(-7deg); } 50% { transform: rotate(7deg); } }
+#fig-root div:has(> .hero-art) > div.rl > svg {
+  animation: star-rock 4.2s ease-in-out infinite;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+#fig-root div:has(> .hero-art) > div.rl:nth-of-type(2) > svg { animation-delay: .35s; }
+#fig-root div:has(> .hero-art) > div.rl:nth-of-type(3) > svg { animation-delay: .7s; }
+#fig-root div:has(> .hero-art) > span.rl { transform: translateX(-90px); }
+#fig-root div:has(> .hero-art) > span.rl.rl-on { transform: translateX(0); }
+#fig-root div:has(> .hero-art) > span,
+#fig-root div:has(> .hero-art) > div:not(.hero-art) { z-index: 2 !important; }
+a { color: #373BF9; }
+a:hover { color: #697DFF; }
+html { overflow-x: hidden; }
+</style>
+<script type="module" src="figma-antispam/starburst-3d.js"></script>
+<script src="figma-antispam/nbsp.js"></script>
+<script>
+(function () {
+  function attach(v) {
+    if (v.__pp) return; v.__pp = 1;
+    v.muted = true; v.volume = 0; v.defaultMuted = true; v.setAttribute('muted', '');
+    v.loop = false; v.controls = false; v.playsInline = true;
+    v.addEventListener('volumechange', function () { if (!v.muted || v.volume > 0) { v.muted = true; v.volume = 0; } });
+    var raf = null, back = false;
+    function fwd() { back = false; cancelAnimationFrame(raf); v.play().catch(function () {}); }
+    function rev() {
+      back = true; v.pause();
+      var last = performance.now();
+      (function step(now) {
+        var dt = (now - last) / 1000; last = now;
+        var t = v.currentTime - dt;
+        if (t <= 0.02) { v.currentTime = 0; fwd(); return; }
+        v.currentTime = t;
+        raf = requestAnimationFrame(step);
+      })(last);
+    }
+    v.addEventListener('ended', rev);
+    v.addEventListener('pause', function () { if (!back && !v.ended) fwd(); });
+    fwd();
+  }
+  var t = setInterval(function () {
+    var vs = document.querySelectorAll('video.why-video:not(.why-video-2)');
+    for (var i = 0; i < vs.length; i++) attach(vs[i]);
+  }, 300);
+  setTimeout(function () { clearInterval(t); }, 15000);
+})();
+</script>
+<script>
+(function () {
+  function attach(v) {
+    if (v.__fade) return; v.__fade = 1;
+    v.muted = true; v.volume = 0; v.loop = true; v.controls = false; v.playsInline = true;
+    v.style.opacity = '1';
+    v.playbackRate = 0.9;
+    v.play().catch(function () {});
+    v.addEventListener('play', function () { v.playbackRate = 0.9; });
+    v.addEventListener('pause', function () { v.play().catch(function () {}); });
+    var tail = 1.0;
+    v.addEventListener('timeupdate', function () {
+      var d = v.duration;
+      if (d && isFinite(d) && v.currentTime > d - tail) { v.currentTime = 0; v.play().catch(function () {}); }
+    });
+  }
+  setInterval(function () {
+    var vs = document.querySelectorAll('video.why-video-2');
+    for (var i = 0; i < vs.length; i++) attach(vs[i]);
+  }, 300);
+})();
+</script>
+<script>
+(function () {
+  function init() {
+    var root = document.getElementById('fig-root');
+    if (!root) return false;
+    var secs = root.querySelectorAll('.sc-host-x > div > div');
+    if (!secs.length) return false;
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (e.isIntersecting) {
+          if (e.target.__onShow) e.target.__onShow();
+          e.target.classList.add('rl-on');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+    secs.forEach(function (sec) {
+      var curve = sec.querySelector('img[src*="why-frame-lines"]');
+      if (curve && !curve.dataset.curveInit) {
+        curve.dataset.curveInit = '1';
+        var grp = curve.parentElement;
+        curve.classList.add('curve-draw', 'curve-top');
+        var bot = curve.cloneNode(true);
+        bot.classList.remove('curve-top', 'rl', 'rl-on');
+        bot.classList.add('curve-bot');
+        [].forEach.call(grp.children, function (k) {
+          if (k === curve || k.tagName === 'VIDEO' || k.classList.contains('mode-media')) return;
+          k.classList.add('rl');
+          k.style.transitionDelay = '1.05s';
+        });
+        grp.insertBefore(bot, curve.nextSibling);
+        io.observe(grp);
+        grp.__onShow = function () {
+          curve.classList.add('curve-on');
+          bot.classList.add('curve-on');
+          [].forEach.call(grp.children, function (k) {
+            if (k !== bot) k.classList.add('rl-on');
+          });
+        };
+      }
+      var kids = sec.children.length > 1 ? sec.children : (sec.children[0] ? sec.children[0].children : []);
+      [].forEach.call(kids, function (k, i) {
+        if (k.classList.contains('rl') || k.classList.contains('mode-media')) return;
+        k.classList.add('rl');
+        k.style.transitionDelay = (i * 0.09) + 's';
+        io.observe(k);
+      });
+    });
+    return true;
+  }
+  var t = setInterval(function () { if (init()) clearInterval(t); }, 200);
+  setTimeout(function () { clearInterval(t); }, 8000);
+})();
+</script>
+<script>
+(function () {
+  var sec = null;
+  function loop() {
+    if (!sec) sec = document.querySelector('#fig-root .sc-host-x > div > div:nth-child(3)');
+    if (sec) sec.style.transform = 'none';
+  }
+  loop();
+})();
+</script>
+<script>
+(function () {
+  var cards = null, media = null, box = null, acc = 0, pr = 0, target = 0, drag = false;
+  var SPAN = 1600;
+  function pick() {
+    box = document.querySelector('#fig-root .mode-cards');
+    if (!box || box.children.length < 2) return false;
+    cards = [].map.call(box.children, function (c, i) {
+      var inner = c.children[0] || c;
+      inner.classList.add('mode-text');
+      c.style.cursor = 'pointer';
+      c.addEventListener('click', function () {
+        target = i; acc = i * SPAN; drag = false;
+      });
+      return inner;
+    });
+    media = document.querySelectorAll('#fig-root .mode-media');
+    paint(0);
+    var engaged = function () {
+      var sec = box.closest('.sc-host-x > div > div') || box;
+      var r = sec.getBoundingClientRect(), vh = innerHeight;
+      return r.top < vh * 0.35 && r.bottom > vh * 0.5;
+    };
+    var snap = function () {
+      var sec = box.closest('.sc-host-x > div > div') || box;
+      var r = sec.getBoundingClientRect();
+      if (r.top > 2 || r.top + 2 < 0) window.scrollTo({ top: scrollY + r.top, behavior: 'smooth' });
+    };
+    var onwheel = function (e) {
+      if (!engaged()) return;
+      var down = e.deltaY > 0;
+      if ((down && target === 0) || (!down && target === 1)) {
+        if (e.cancelable) e.preventDefault();
+        if (!drag) { drag = true; }
+        acc = acc + e.deltaY;
+        if (acc > SPAN) { target = 1; acc = SPAN; drag = false; }
+        else if (acc + SPAN < 0) { target = 0; acc = 0; drag = false; }
+      } else {
+        acc = target * SPAN;
+      }
+    };
+    addEventListener('wheel', onwheel, { passive: false, capture: true });
+    document.addEventListener('wheel', onwheel, { passive: false, capture: true });
+    var prevpos = scrollY;
+    var onscroll = function () {
+      var d = scrollY - prevpos; prevpos = scrollY;
+      if (!engaged()) return;
+      acc = acc + d * 1.6;
+      if (acc > SPAN) { target = 1; acc = SPAN; }
+      else if (acc + SPAN < 0) { target = 0; acc = 0; }
+    };
+    addEventListener('scroll', onscroll, { passive: true });
+    document.addEventListener('scroll', onscroll, { passive: true, capture: true });
+    return true;
+  }
+  function paint(p) {
+    pr = p;
+    cards[0].style.opacity = String(1 - 0.5 * p);
+    cards[1].style.opacity = String(0.5 + 0.5 * p);
+    [].forEach.call(media, function (m) {
+      var full = m.dataset.mode === 'full';
+      m.style.zIndex = full ? '1' : '0';
+      m.style.opacity = full ? String(p) : '1';
+    });
+  }
+  function loop() {
+    if (cards || pick()) {
+      if (Math.abs(target - pr) > 0.002) paint(pr + (target - pr) * 0.08);
+      var r = box.getBoundingClientRect();
+      if (r.top > innerHeight * 1.2) { acc = 0; target = 0; drag = false; }
+    }
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+<script>
+(function () {
+  function init() {
+    var host = document.querySelector('#fig-root div:has(> .hero-art)');
+    if (!host) return false;
+    if (host.querySelector(':scope > video.hero-video')) return true;
+    var stray = document.querySelector('#fig-root .hero-art video.hero-video');
+    if (stray) stray.remove();
+    host.style.overflow = 'hidden';
+    var v = document.createElement('video');
+    v.className = 'hero-video';
+    v.src = 'figma-antispam/assets/hero-video.mp4';
+    v.muted = true; v.defaultMuted = true; v.loop = false; v.autoplay = true;
+    v.playsInline = true; v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
+    v.preload = 'auto';
+    host.appendChild(v);
+    var kick = function () { if (v.paused && !v.__back) v.play().catch(function () {}); };
+    v.addEventListener('canplay', kick);
+    v.addEventListener('loadeddata', kick);
+    v.addEventListener('pause', kick);
+    setInterval(kick, 1000);
+    kick();
+    var raf = null;
+    v.addEventListener('ended', function () {
+      v.__back = true;
+      var prev = performance.now();
+      (function step(now) {
+        var dt = (now - prev) / 1000; prev = now;
+        var t2 = v.currentTime - dt;
+        if (t2 <= 0.03) {
+          v.currentTime = 0; v.__back = false;
+          v.play().catch(function () {});
+          return;
+        }
+        v.currentTime = t2;
+        raf = requestAnimationFrame(step);
+      })(prev);
+    });
+    return true;
+  }
+  var t = setInterval(function () { if (init()) clearInterval(t); }, 250);
+  setTimeout(function () { clearInterval(t); }, 10000);
+})();
+</script>
+<script>
+(function () {
+  var fit = function () {
+    var el = document.getElementById('fig-root');
+    if (!el) return;
+    var z = document.documentElement.clientWidth / 1921;
+    el.style.zoom = String(z);
+    el.style.setProperty('--mode-vh', (innerHeight * 0.7 / z) + 'px');
+    el.style.setProperty('--hero-h', (innerHeight / z) + 'px');
+    var hero = el.querySelector('div:has(> .hero-art)');
+    if (hero) {
+      var kids = [].filter.call(hero.children, function (n) {
+        return n.tagName !== 'VIDEO' && !n.classList.contains('hero-art');
+      });
+      kids.forEach(function (n) {
+        if (!n.dataset.t0) n.dataset.t0 = String(parseFloat(n.style.top) || 0);
+      });
+      var bullets = kids.filter(function (n) { return n.tagName !== 'SPAN'; });
+      bullets.sort(function (a, b) { return (+a.dataset.t0) - (+b.dataset.t0); });
+      var lastb = bullets[bullets.length - 1];
+      if (lastb) {
+        var base = innerHeight / z - 200 - lastb.getBoundingClientRect().height / z;
+        bullets.forEach(function (n, i) {
+          n.style.top = (base - (bullets.length - 1 - i) * 72) + 'px';
+        });
+      }
+      kids.forEach(function (n) {
+        if (n.tagName === 'SPAN') n.style.top = ((+n.dataset.t0) + 50) + 'px';
+      });
+    }
+    var title = el.querySelector('.mode-title');
+    var cards = el.querySelector('.mode-cards');
+    if (title && cards) {
+      var apply = function () {
+        var cur = parseFloat(cards.style.top) || 0;
+        var gap = (cards.getBoundingClientRect().top - title.getBoundingClientRect().bottom) / z;
+        var next = cur + (64 - gap);
+        cards.style.setProperty('top', next + 'px', 'important');
+        var sec = cards.closest('.sc-host-x > div > div');
+        var need = sec ? (cards.getBoundingClientRect().bottom - sec.getBoundingClientRect().top) / z + 100 : 0;
+        if (sec) sec.style.setProperty('height', need + 'px', 'important');
+        var pan = el.querySelector('.mode-media');
+        pan = pan && pan.parentElement && pan.parentElement.parentElement;
+        if (pan) pan.style.setProperty('height', need + 'px', 'important');
+      };
+      apply();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(apply);
+    }
+    var panel = el.querySelector('.mode-media');
+    panel = panel && panel.parentElement && panel.parentElement.parentElement;
+    var root_left = el.getBoundingClientRect().left;
+    if (panel) {
+      var pref = panel.offsetParent || panel.parentElement;
+      var wrap_left = (pref.getBoundingClientRect().left - root_left) / z;
+      panel.style.setProperty('left', (0 - wrap_left) + 'px', 'important');
+    }
+    [title, cards].forEach(function (n) {
+      if (!n) return;
+      var nref = n.offsetParent || n.parentElement;
+      var pl = (nref.getBoundingClientRect().left - root_left) / z;
+      n.style.setProperty('left', (1004 - pl) + 'px', 'important');
+    });
+    if (window.Sifox && window.Sifox.nbsp) window.Sifox.nbsp(el);
+  };
+  addEventListener('resize', fit);
+  var t = setInterval(fit, 120);
+  setTimeout(function () { clearInterval(t); setInterval(fit, 400); }, 6000);
+  fit();
+})();
+</script>
+</helmet>
+<div id="fig-root" style="width: 1921px; overflow: hidden">
+  
+<x-import component-from-global-scope="Frame15" from="./figma-antispam/Components.bundle.js" hint-size="1921px,4634px"></x-import></div>
+</x-dc>
+</body>
+</html>
